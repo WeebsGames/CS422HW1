@@ -42,7 +42,12 @@ function matchesQuery(ev, q) {
 function compareByDate(a, b) {
   // Hint: const da = new Date(a.date); const db = new Date(b.date);
   // For ascending, return da - db; for descending, return db - da (or negate).
-  return 0;
+  const da = new Date(a.date)
+  const db = new Date(b.date)
+  if (state.sort == "dateAsc"){
+    return da-db
+  }
+  return db-da;
 }
 
 // TODO 2: return a filtered + sorted list based on `state`
