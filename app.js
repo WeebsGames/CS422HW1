@@ -63,8 +63,9 @@ function getVisibleEvents() {
       events.filter((events) => events.title == state.query)
     }
     if(state.freeOnly){
-      events.filter((events) => events.freeOnly == true)
+      events.filter((events) => events.freeOnly === true)
     }
+    events.sort(compareByDate(a, b))
   }
 
   return events;
@@ -76,6 +77,7 @@ function render() {
   // - status: "Showing X of Y events"
   // - clear results and re-render from scratch
   // - if X === 0, show an empty-state message
+  
 }
 
 // TODO 4: wire up event listeners (input/change) that update state and call render()
