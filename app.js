@@ -57,7 +57,17 @@ function getVisibleEvents() {
   // - filter by query (if state.query not empty)
   // - filter by freeOnly (if state.freeOnly true)
   // - sort with compareByDate
-  return EVENTS;
+  let events = EVENTS.slice()
+  for (e in events){
+    if(state.query != ""){
+      events.filter((events) => events.title == state.query)
+    }
+    if(state.freeOnly){
+      events.filter((events) => events.freeOnly == true)
+    }
+  }
+
+  return events;
 }
 
 // TODO 3: render status line + results list + empty state
