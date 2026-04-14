@@ -45,7 +45,12 @@ Answer in 2–4 sentences each:
 The page should change as the user interacts with the UI. For example, a searchbar should be highlighted when its selected. As the user types out a query, the listings should update in real time. If the listings have to load due to a large data set, a loading screen should be shown so that the user knows the process is working and not frozen. This helps the user understand the results of their actions and whether or not the website is working.
 
 2. **Efficiency:** What feature in this UI reduces effort/time for common tasks? Why?
+
+The checkbox for Free Only and the sorting modes help increase efficiency. Free Only allows a user to look for free events faster. Sorting modes help the user find certain extremes quickly.
+
 3. **Safety:** What would prevent confusion or errors? (e.g., empty state, clear status, preventing invalid states)
+
+If the user's search results with nothing, there should be a message telling the user nothing matches their search. Search engines should not be case sensitive and should be a little forgiving with spelling.
 
 ---
 
