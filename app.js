@@ -77,7 +77,34 @@ function render() {
   // - status: "Showing X of Y events"
   // - clear results and re-render from scratch
   // - if X === 0, show an empty-state message
-  
+  const visibleEvents = getVisibleEvents();
+  const totalEvents = EVENTS.length;
+  els.status.textContent = 'Showing ${visibleEvents.length} of ${totalEvents} events';
+
+  els.results.innerHTML = '';
+
+  if(visibleEvents === 0){
+    const emptyLi = document.createElement('li');
+    emptyLi.className = 'card';
+    emptyLi.textContent = 'No events match your filter';
+    els.results.appendChild(emptyLi);
+    return;
+  }
+
+  visibleEvents.forEach(event => {
+    const li = document.createElement('li');
+    li.className = 'card';
+
+    li.innerHTML = `
+      <h3>${event.title}</h3>
+      <p><strong>Venue:</strong> ${event.venue}</p>
+      <p><strong>Date:</strong> ${new Date(event.date).toLocaleDateString()}</p>
+      <p><strong>Cost:</strong> ${event.free ? 'Free' : 'Paid'}</p>
+    `;
+
+    els.results.appendChild(li);
+  })
+
 }
 
 // TODO 4: wire up event listeners (input/change) that update state and call render()
@@ -85,6 +112,7 @@ function wireEvents() {
   // - q input: update state.query
   // - freeOnly change: update state.freeOnly
   // - sort change: update state.sort
+
 }
 
 wireEvents();
