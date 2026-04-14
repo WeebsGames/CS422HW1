@@ -25,10 +25,10 @@ Double-click `index.html` to open it in your browser.
 ## Completion checklist (what to do)
 Work in `app.js` and do your best to implement the TODOs:
 
-- [ ] Implement `compareByDate(a, b)` (sort ascending/descending)
-- [ ] Implement `getVisibleEvents()` (filter + sort based on `state`)
-- [ ] Implement `render()` (status line + results list + empty state)
-- [ ] Implement `wireEvents()` (event listeners update `state` then call `render()`)
+- [x] Implement `compareByDate(a, b)` (sort ascending/descending)
+- [x] Implement `getVisibleEvents()` (filter + sort based on `state`)
+- [x] Implement `render()` (status line + results list + empty state)
+- [x] Implement `wireEvents()` (event listeners update `state` then call `render()`)
 
 ### Architecture guideline (helps you succeed)
 - Keep truth in `state` (query, filter, sort).
@@ -41,6 +41,9 @@ Work in `app.js` and do your best to implement the TODOs:
 Answer in 2–4 sentences each:
 
 1. **Learnability:** What feedback would you want the UI to show after user actions? Why does it help?
+
+The page should change as the user interacts with the UI. For example, a searchbar should be highlighted when its selected. As the user types out a query, the listings should update in real time. If the listings have to load due to a large data set, a loading screen should be shown so that the user knows the process is working and not frozen. This helps the user understand the results of their actions and whether or not the website is working.
+
 2. **Efficiency:** What feature in this UI reduces effort/time for common tasks? Why?
 3. **Safety:** What would prevent confusion or errors? (e.g., empty state, clear status, preventing invalid states)
 

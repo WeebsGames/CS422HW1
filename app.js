@@ -57,16 +57,19 @@ function getVisibleEvents() {
   // - filter by query (if state.query not empty)
   // - filter by freeOnly (if state.freeOnly true)
   // - sort with compareByDate
-  let events = EVENTS.slice()
-  for (e in events){
-    if(state.query != ""){
-      events.filter((events) => events.title == state.query)
-    }
-    if(state.freeOnly){
-      events.filter((events) => events.freeOnly === true)
-    }
-    events.sort(compareByDate(a, b))
+  let events = EVENTS.slice();
+
+  if (state.query) {
+    events = events.filter(event =>
+      (event.title + " " + event.venue).toLowerCase().includes(state.query.toLowerCase())
+    );
   }
+
+  if (state.freeOnly) {
+    events = events.filter(event => event.free);
+  }
+
+  events.sort(compareByDate);
 
   return events;
 }
@@ -79,11 +82,11 @@ function render() {
   // - if X === 0, show an empty-state message
   const visibleEvents = getVisibleEvents();
   const totalEvents = EVENTS.length;
-  els.status.textContent = 'Showing ${visibleEvents.length} of ${totalEvents} events';
+  els.status.textContent = `Showing ${visibleEvents.length} of ${totalEvents} events`;
 
   els.results.innerHTML = '';
 
-  if(visibleEvents === 0){
+  if(visibleEvents.length === 0){
     const emptyLi = document.createElement('li');
     emptyLi.className = 'card';
     emptyLi.textContent = 'No events match your filter';
@@ -112,7 +115,20 @@ function wireEvents() {
   // - q input: update state.query
   // - freeOnly change: update state.freeOnly
   // - sort change: update state.sort
+  els.q.addEventListener("input", (e) => {
+    state.query = e.target.value;
+    render();
+  });
 
+  els.freeOnly.addEventListener('change', () => {
+    state.freeOnly = els.freeOnly.checked;
+    render();
+  });
+
+  els.sort.addEventListener("change", () => {
+    state.sort = els.sort.value;
+    render();
+  });
 }
 
 wireEvents();
